@@ -122,6 +122,16 @@ describe('The order helper', () => {
             expect(actual).toEqual(expected);
         });
 
+        it('Returns the multiple with the smallest multiplier needed to make the passed value', () => {
+            const value = 1000;
+            const items = [250, 500, 1000, 1500];
+
+            const expected = 1000;
+            const actual = findSmallestMultiple(value, items);
+
+            expect(actual).toEqual(expected);
+        });
+
         
     });
 });
