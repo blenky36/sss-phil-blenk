@@ -13,5 +13,5 @@ export const orderCalculator = (numberOfSweets, sweetPackSizes) => {
     }
 }
 
-const isSmallerThanAllItems = (item, array) => array.filter(x => item > x).length < 1;
-const getSmallestItem = (array) => Math.min(...array);
+export const isSmallerThanAllItems = (item, array) => array.filter(x => item > x).length < 1;
+export const getSmallestItem = (array) => Math.min(...array);
