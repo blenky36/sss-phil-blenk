@@ -5,7 +5,7 @@ import { orderCalculator } from '../_helpers/orderCalculator';
 
 export const calculateOrder = () => (dispatch, getState) => {
     const orderNumberOfSweets = getOrderNumberOfSweets(getState());
-    console.log(orderNumberOfSweets);
+    
     if(orderNumberOfSweets == 0) {
         updateError(dispatch, 'Please order at least 1 sweet!', true)
     } else {
