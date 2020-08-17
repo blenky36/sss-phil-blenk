@@ -1,5 +1,5 @@
 import { isSmallerThanAllItems, getSmallestItem, isAMultipleOfAnItem, isMultipleOf, 
-    getItemsThatAreMultiples } from './order.helper';
+    getItemsThatAreMultiples, findSmallestMultiple } from './order.helper';
 
 describe('The order helper', () => {
     describe('isSmallerThanAllItems', () => {
@@ -109,5 +109,19 @@ describe('The order helper', () => {
 
             expect(actual).toEqual(expected);
         });
+    });
+
+    describe('findSmallestMultiple', () => {
+        it('Returns the multiple with the smallest multiplier needed to make the passed value', () => {
+            const value = 750;
+            const items = [250, 500, 1000, 1500];
+
+            const expected = 250;
+            const actual = findSmallestMultiple(value, items);
+
+            expect(actual).toEqual(expected);
+        });
+
+        
     });
 });
