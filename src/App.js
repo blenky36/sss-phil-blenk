@@ -20,6 +20,8 @@ const App = () => (
     <AppContainer>
         <HeaderContainer>
             <h2>🍭Simon's Sweet Shop🍬</h2>
+            <span>Please order how many sweets you would like:</span>
+            <br/>
             <NewOrder />
         </HeaderContainer>
     </AppContainer>

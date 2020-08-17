@@ -5,10 +5,12 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import { orderReducer } from './_reducers/order.reducer';
+import { inventoryReducer } from './_reducers/inventory.reducer';
 
 
 const reducers = {
-    orderReducer
+    orderReducer,
+    inventoryReducer
 };
 
 const persistConfig = {
