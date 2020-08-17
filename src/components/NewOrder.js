@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { getOrderNumberOfSweets } from '../_selectors/order.selectors';
+import { setOrderNumberOfSweets } from '../_actions/order.actions';
 
 const InlineContainer = styled.div`
     display: flex;
@@ -44,13 +47,20 @@ const OrderButton = styled.button`
     }
 `;
 
-const NewOrder = () => {
+const NewOrder = ({ numberOfSweets, onOrderClicked }) => {
     return (
         <InlineContainer>
-            <OrderInput type="number" step="1" min="0" />
+            <OrderInput onChange={(event) => onOrderClicked(event.target.value)} type="number" step="1" min="0" value={numberOfSweets}/>
             <OrderButton >Order</OrderButton>
         </InlineContainer>
     )
 }
 
-export default NewOrder;
+const mapStateToProps = state => ({
+    numberOfSweets: getOrderNumberOfSweets(state)
+});
+const mapDispatchToProps = dispatch => ({
+    onOrderClicked: (numberOfSweets) => dispatch(setOrderNumberOfSweets(numberOfSweets))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewOrder);

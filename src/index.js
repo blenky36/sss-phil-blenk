@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { configureStore } from './store';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { Provider } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyling = createGlobalStyle`
@@ -19,10 +23,19 @@ code {
 }
 `;
 
+const store = configureStore();
+const persistor = persistStore(store);
+
 ReactDOM.render(
     <React.StrictMode>
-        <GlobalStyling/>
-        <App />
+        <GlobalStyling />
+        <Provider store={store}>
+            <PersistGate
+                loading={<div>Loading...</div>}
+                persistor={persistor}>
+                <App />
+            </PersistGate>
+        </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );

@@ -1,0 +1,1 @@
+export const getOrderNumberOfSweets = state => state.orderReducer.numberOfSweets;
