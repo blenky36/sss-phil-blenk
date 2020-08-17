@@ -1,7 +1,8 @@
 // number of Sweets is int, sweetPack size is array
 
 export const orderCalculator = (numberOfSweets, sweetPackSizes) => {
-    const order = {};
+    let order = {};
+    let currentNumberOfSweetPacks = 0;
 
     if(!numberOfSweets || numberOfSweets === 0) {
         return order;
@@ -18,25 +19,37 @@ export const orderCalculator = (numberOfSweets, sweetPackSizes) => {
         const multiples = getItemsThatAreMultiples(numberOfSweets, sweetPackSizes);
     
         if(multiples.length === 1) {
-            order[multiples[0]] = numberOfSweets / multiples[0];
-            return order;
-
+            let multiplier = numberOfSweets / multiples[0];
+            order[multiples[0]] = multiplier;
+            currentNumberOfSweetPacks = multiplier;
+            
         } else {
+            let multiplier = numberOfSweets / smallestMultiple;
             const smallestMultiple = findSmallestMultiple(numberOfSweets, multiples);
-            order[smallestMultiple] = numberOfSweets / smallestMultiple;
-            return order;
-        }
+            order[smallestMultiple] = multiplier;
+            currentNumberOfSweetPacks = multiplier;
 
+        }
+    } else if(true) {
+        // multiple items multiply and add to give total with no remainder
+
+    } else if(true) {
+        // multiple items multiply and add to give total with remainer :(
     } else {
         return {};
     }
 }
 
 export const isSmallerThanAllItems = (value, items) => items.filter(item => value > item).length < 1;
+
 export const getSmallestItem = (items) => Math.min(...items);
+
 export const isMultipleOf = (value, item) => item % value === 0;
-export const getItemsThatAreMultiples = (value, items) => items.filter(item => isMultipleOf(item, value))
+
+export const getItemsThatAreMultiples = (value, items) => items.filter(item => isMultipleOf(item, value));
+
 export const isAMultipleOfAnItem = (value, items) => getItemsThatAreMultiples(value, items).length > 0;
+
 export const findSmallestMultiple = (value, multiples) => {
     let currentSmallestMultiplier = value / multiples[0];
     let currentSmallestMultiple = multiples[0];
