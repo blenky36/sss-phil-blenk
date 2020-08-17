@@ -5,22 +5,21 @@ import styled from 'styled-components';
 
 const Table = styled.table`
     border-collapse: collapse;
-    font-size: 80%;
-    font-weight: bold;
+    font-size: 75%;
 `;
 
 const TableHead = styled.thead`
     border-radius: 4px;
     border: 1px solid #00C851;    
     background-color: #00C851;
+    font-weight: bold;
 `;
 
 const TableData = styled.td`
     padding: 15px;
 `;
 
-const OrderList = () => {
-    const orderOutputSweetPacks = { 500: 1, 3000: 2 };
+const OrderList = ({ orderOutputSweetPacks }) => {
 
     const isEmpty = (obj) => {
         for (var prop in obj) {
