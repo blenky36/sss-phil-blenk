@@ -12,4 +12,15 @@ describe('The order reducer', () => {
     
         expect(actual).toEqual(expected);
     });
+
+    it('Sets the outputSweetPacks correctly when passed SET_ORDER_OUTPUT_SWEET_PACKS', () => {
+        const fakeState = { outputSweetPacks: {} };
+        const fakeOutputSweetPacks = { 250: 1, 500: 1 }
+        const fakeAction = getFakeAction('SET_ORDER_OUTPUT_SWEET_PACKS', fakeOutputSweetPacks);
+
+        const expected = { outputSweetPacks: fakeOutputSweetPacks }
+        const actual = orderReducer(fakeState, fakeAction);
+    
+        expect(actual).toEqual(expected);
+    });
 });
