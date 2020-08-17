@@ -1,0 +1,1 @@
+export const getSweetPackSizes = state => state.inventoryReducer.sweetPackSizes;
