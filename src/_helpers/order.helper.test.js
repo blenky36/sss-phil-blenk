@@ -1,4 +1,5 @@
-import { isSmallerThanAllItems, getSmallestItem } from './order.helper';
+import { isSmallerThanAllItems, getSmallestItem, isAMultipleOfAnItem, isMultipleOf, 
+    getItemsThatAreMultiples } from './order.helper';
 
 describe('The order helper', () => {
     describe('isSmallerThanAllItems', () => {
@@ -41,6 +42,72 @@ describe('The order helper', () => {
 
             expect(expectedMixed).toEqual(actualMixed);
             expect(expectedOrdered).toEqual(actualOrdered);
+        });
+    });
+
+    describe('isMultipleOf', () => {
+        it('Returns true when passed a mutiple of the item', () => {
+            const value = 250;
+            const item = 750;
+
+            const expected = true;
+            const actual = isMultipleOf(value, item);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('Returns false when not passed a mutiple of the item', () => {
+            const value = 3;
+            const item = 4;
+
+            const expected = false;
+            const actual = isMultipleOf(value, item);
+
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('getItemsThatAreMultiples', () => {
+        it('Returns items when passed a value that is a multiple of items', () => {
+            const value = 750;
+            const items = [250, 500, 1000, 1500];
+
+            const expected = [250];
+            const actual = getItemsThatAreMultiples(value, items);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('Returns no items when not passed a value that is a multiple of items', () => {
+            const value = 3;
+            const items = [4, 5];
+
+            const expected = [];
+            const actual = getItemsThatAreMultiples(value, items);
+
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('isAMultipleOfAnItem', () => {
+        it('Returns true when passed a mutiple of an item', () => {
+            const value = 750;
+            const items = [250, 500, 1000, 1500];
+
+            const expected = true;
+            const actual = isAMultipleOfAnItem(value, items);
+
+            expect(actual).toEqual(expected);
+        });
+
+        it('Returns false when not passed a mutiple of an item', () => {
+            const value = 3;
+            const items = [4];
+
+            const expected = false;
+            const actual = isAMultipleOfAnItem(value, items);
+
+            expect(actual).toEqual(expected);
         });
     });
 });
