@@ -1,4 +1,4 @@
-import { getOrderNumberOfSweets, getOrderOutputSweetPacks } from './order.selectors';
+import { getOrderNumberOfSweets, getOrderOutputSweetPacks, getOrderErrorMessage, getOrderShowError } from './order.selectors';
 
 describe('The order selectors', () => {
     describe('The getOrderNumberOfSweets selector', () => {
@@ -20,6 +20,30 @@ describe('The order selectors', () => {
             
             const expected = fakeOutputSweetPacks;
             const actual = getOrderOutputSweetPacks(fakeState);
+
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('The getOrderErrorMessage selector', () => {
+        it('Returns the error message in the order reducer', () => {
+            const fakeErrorMessage = 'Error message';
+            const fakeState = { orderReducer: { errorMessage: fakeErrorMessage } };
+            
+            const expected = fakeErrorMessage;
+            const actual = getOrderErrorMessage(fakeState);
+
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('The getOrderShowError selector', () => {
+        it('Returns the show error boolean in the order reducer', () => {
+            const fakeShowError = true;
+            const fakeState = { orderReducer: { showError: fakeShowError } };
+            
+            const expected = fakeShowError;
+            const actual = getOrderShowError(fakeState);
 
             expect(actual).toEqual(expected);
         });

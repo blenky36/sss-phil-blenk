@@ -1,0 +1,22 @@
+import { setOrderErrorMessage, setShowOrderError, setOrderOutputSweetPacks } from '../_actions/order.actions';
+import { getSweetPackSizes } from '../_selectors/inventory.selectors';
+import { getOrderNumberOfSweets } from '../_selectors/order.selectors';
+import { orderCalculator } from '../_helpers/orderCalculator';
+
+export const calculateOrder = () => (dispatch, getState) => {
+    const orderNumberOfSweets = getOrderNumberOfSweets(getState());
+    console.log(orderNumberOfSweets);
+    if(orderNumberOfSweets == 0) {
+        updateError(dispatch, 'Please order at least 1 sweet!', true)
+    } else {
+        updateError(dispatch, '', false);
+        const sweetPackSizes = getSweetPackSizes(getState());
+        const outputSweetPacks = orderCalculator(orderNumberOfSweets, sweetPackSizes);
+        dispatch(setOrderOutputSweetPacks(outputSweetPacks));
+    }
+}
+
+const updateError = (dispatch, errorMessage, showError) => {
+    dispatch(setOrderErrorMessage(errorMessage));
+    dispatch(setShowOrderError(showError));
+}

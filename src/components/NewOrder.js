@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { getOrderNumberOfSweets } from '../_selectors/order.selectors';
+import { getOrderNumberOfSweets, getOrderErrorMessage, getOrderShowError } from '../_selectors/order.selectors';
 import { setOrderNumberOfSweets } from '../_actions/order.actions';
+import { calculateOrder } from '../_thunks/order.thunks';
 
 const InlineContainer = styled.div`
     display: flex;
@@ -47,20 +48,36 @@ const OrderButton = styled.button`
     }
 `;
 
-const NewOrder = ({ numberOfSweets, onOrderClicked }) => {
+const ErrorMessageText = styled.p`
+    color: red;
+    font-size: large;
+`;
+
+const HiddenErrorMessageText = styled.p`
+    color: #ffffff00;
+    font-size: large;
+`;
+
+const NewOrder = ({ numberOfSweets, onOrderChanged, onOrderClicked, errorMessage, showError }) => {
     return (
-        <InlineContainer>
-            <OrderInput onChange={(event) => onOrderClicked(event.target.value)} type="number" step="1" min="0" value={numberOfSweets}/>
-            <OrderButton >Order</OrderButton>
-        </InlineContainer>
+        <>
+            <InlineContainer>
+                <OrderInput onChange={(event) => onOrderChanged(parseInt(event.target.value))} type="number" step="1" min="0" value={numberOfSweets} />
+                <OrderButton onClick={(event) => onOrderClicked()} >Order</OrderButton>
+            </InlineContainer>
+            {showError ? <ErrorMessageText>{errorMessage}</ErrorMessageText> : <HiddenErrorMessageText>Text</HiddenErrorMessageText>}
+        </>
     )
 }
 
 const mapStateToProps = state => ({
-    numberOfSweets: getOrderNumberOfSweets(state)
+    numberOfSweets: getOrderNumberOfSweets(state),
+    errorMessage: getOrderErrorMessage(state),
+    showError: getOrderShowError(state)
 });
 const mapDispatchToProps = dispatch => ({
-    onOrderClicked: (numberOfSweets) => dispatch(setOrderNumberOfSweets(numberOfSweets))
+    onOrderChanged: (numberOfSweets) => dispatch(setOrderNumberOfSweets(numberOfSweets)),
+    onOrderClicked: () => dispatch(calculateOrder())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewOrder);

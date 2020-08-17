@@ -19,50 +19,48 @@ const TableData = styled.td`
     padding: 15px;
 `;
 
-const OrderList = ({ orderOutputSweetPacks }) => {
-
-    const isEmpty = (obj) => {
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop))
-                return false;
-        }
-        return true;
+export const isEmpty = (obj) => {
+    for (var prop in obj) {
+        if (obj.hasOwnProperty(prop))
+            return false;
     }
+    return true;
+}
 
-    const getOrderList = () => {
-        const sweetPackList = [];
+export const getOrderList = (orderOutputSweetPacks) => {
+    const sweetPackList = [];
 
-        if (!orderOutputSweetPacks || isEmpty(orderOutputSweetPacks)) {
+    if (!orderOutputSweetPacks || isEmpty(orderOutputSweetPacks)) {
+        sweetPackList.push(
+            <tr>
+                <TableData colSpan="2"><i>Please order some sweets.</i></TableData>
+            </tr>
+        )
+    } else {
+        for (const sweetPack in orderOutputSweetPacks) {
             sweetPackList.push(
                 <tr>
-                    <TableData colSpan="2"><i>Please order some sweets.</i></TableData>
+                    <TableData>{sweetPack}</TableData>
+                    <TableData>{orderOutputSweetPacks[sweetPack]}</TableData>
                 </tr>
             )
-        } else {
-            for (const sweetPack in orderOutputSweetPacks) {
-                sweetPackList.push(
-                    <tr>
-                        <TableData>{sweetPack}</TableData>
-                        <TableData>{orderOutputSweetPacks[sweetPack]}</TableData>
-                    </tr>
-                )
-            }
         }
-        return sweetPackList;
     }
-
-    return (
-        <Table>
-            <TableHead>
-                <TableData>Sweet Pack Size</TableData>
-                <TableData>Quantity</TableData>
-            </TableHead>
-            <tbody>
-                {getOrderList()}
-            </tbody>
-        </Table>
-    )
+    return sweetPackList;
 }
+
+const OrderList = ({ orderOutputSweetPacks }) => (
+    <Table>
+        <TableHead>
+            <TableData>Sweet Pack Size</TableData>
+            <TableData>Quantity</TableData>
+        </TableHead>
+        <tbody>
+            {getOrderList(orderOutputSweetPacks)}
+        </tbody>
+    </Table>
+)
+
 
 const mapStateToProps = state => ({
     orderOutputSweetPacks: getOrderOutputSweetPacks(state)

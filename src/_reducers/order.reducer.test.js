@@ -23,4 +23,25 @@ describe('The order reducer', () => {
     
         expect(actual).toEqual(expected);
     });
+
+    it('Sets the showError correctly when passed SET_SHOW_ORDER_ERROR', () => {
+        const fakeState = { showError: true };
+        const fakeAction = getFakeAction('SET_SHOW_ORDER_ERROR', false);
+
+        const expected = { showError: false }
+        const actual = orderReducer(fakeState, fakeAction);
+    
+        expect(actual).toEqual(expected);
+    });
+
+    it('Sets the errorMessage correctly when passed SET_ORDER_ERROR_MESSAGE', () => {
+        const fakeState = { errorMessage: '' };
+        const fakeErrorMessage = 'Error message';
+        const fakeAction = getFakeAction('SET_ORDER_ERROR_MESSAGE', fakeErrorMessage);
+
+        const expected = { errorMessage: fakeErrorMessage }
+        const actual = orderReducer(fakeState, fakeAction);
+    
+        expect(actual).toEqual(expected);
+    });
 });
