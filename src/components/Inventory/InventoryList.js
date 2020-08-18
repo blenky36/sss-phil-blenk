@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSweetPackSizes } from '../_selectors/inventory.selectors';
+import { getSweetPackSizes } from '../../_selectors/inventory.selectors';
 import InventoryItem from './InventoryItem';
 import NewInventoryItem from './NewInventoryItem';
-import { StyledButton, StyledInput, InlineContainer } from '../styling/commonStyles';
+import { StyledButton, StyledInput, InlineContainer } from '../../styling/commonStyles';
 
 const InventoryList = ({ sweetPackSizes }) => {
     return (
         <>
             {sweetPackSizes.map((sweetPack, index) => (
-                <InventoryItem text={sweetPack} key={index} />
+                <InventoryItem text={sweetPack} key={index} index={index} />
             ))}
             <h6>Add New Sweet Pack</h6>
             <NewInventoryItem/>

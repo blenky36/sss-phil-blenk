@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import NewOrder from './components/NewOrder';
-import OrderList from './components/OrderList';
-import InventoryList from './components/InventoryList';
+import NewOrder from './components/Order/NewOrder';
+import OrderList from './components/Order/OrderList';
+import InventoryList from './components/Inventory/InventoryList';
 
 const AppContainer = styled.div`
     text-align: center;

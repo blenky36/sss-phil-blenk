@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { getOrderNumberOfSweets, getOrderErrorMessage, getOrderShowError } from '../_selectors/order.selectors';
-import { setOrderNumberOfSweets } from '../_actions/order.actions';
-import { calculateOrder } from '../_thunks/order.thunks';
-import { StyledButton, StyledInput, InlineContainer, HiddenErrorMessageText, ErrorMessageText } from '../styling/commonStyles';
+import { getOrderNumberOfSweets, getOrderErrorMessage, getOrderShowError } from '../../_selectors/order.selectors';
+import { setOrderNumberOfSweets } from '../../_actions/order.actions';
+import { calculateOrder } from '../../_thunks/order.thunks';
+import { StyledButton, StyledInput, InlineContainer, HiddenErrorMessageText, ErrorMessageText } from '../../styling/commonStyles';
 
 
 const NewOrder = ({ numberOfSweets, onOrderChanged, onOrderClicked, errorMessage, showError }) => {

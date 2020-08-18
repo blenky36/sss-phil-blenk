@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getOrderOutputSweetPacks } from '../_selectors/order.selectors';
+import { getOrderOutputSweetPacks } from '../../_selectors/order.selectors';
 import styled from 'styled-components';
 
 const Table = styled.table`

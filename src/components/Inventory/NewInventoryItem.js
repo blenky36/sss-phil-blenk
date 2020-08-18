@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { getInventoryErrorMessage, getInventoryShowError } from '../_selectors/inventory.selectors';
-import { addInventoryItem } from '../_thunks/inventory.thunks';
-import { StyledButton, StyledInput, InlineContainer, ErrorMessageText, HiddenErrorMessageText } from '../styling/commonStyles';
+import { getInventoryErrorMessage, getInventoryShowError } from '../../_selectors/inventory.selectors';
+import { addInventoryItem } from '../../_thunks/inventory.thunks';
+import { StyledButton, StyledInput, InlineContainer, ErrorMessageText, HiddenErrorMessageText } from '../../styling/commonStyles';
 
 const NewInventoryItem = ({ onAddInventoryItemClicked, errorMessage, showError }) => {
     const [newInventoryItem, setNewInventoryItem] = useState(0);
