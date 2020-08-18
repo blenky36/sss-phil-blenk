@@ -28,6 +28,10 @@ export const orderCalculator = (numberOfSweets, sweetPackSizes, existingOrder) =
         }
     }
 
+    if(newNumberOfSweets === 0) {
+        return order;
+    }
+
     return orderCalculator(newNumberOfSweets, sweetPackSizes, order);
 }
 
