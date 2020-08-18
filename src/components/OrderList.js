@@ -32,7 +32,7 @@ export const getOrderList = (orderOutputSweetPacks) => {
 
     if (!orderOutputSweetPacks || isEmpty(orderOutputSweetPacks)) {
         sweetPackList.push(
-            <tr>
+            <tr key={0}>
                 <TableData colSpan="2"><i>Please order some sweets.</i></TableData>
             </tr>
         )

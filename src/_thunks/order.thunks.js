@@ -7,7 +7,8 @@ export const calculateOrder = () => (dispatch, getState) => {
     const orderNumberOfSweets = getOrderNumberOfSweets(getState());
     
     if(orderNumberOfSweets === 0) {
-        updateError(dispatch, 'Please order at least 1 sweet!', true)
+        updateError(dispatch, 'Please order at least 1 sweet!', true);
+        dispatch(setOrderOutputSweetPacks({}));
     } else {
         updateError(dispatch, '', false);
         const sweetPackSizes = getSweetPackSizes(getState());

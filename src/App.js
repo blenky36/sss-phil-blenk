@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import NewOrder from './components/NewOrder';
 import OrderList from './components/OrderList';
+import InventoryList from './components/InventoryList';
 
 const AppContainer = styled.div`
     text-align: center;
@@ -37,6 +38,8 @@ const App = () => (
         </HeaderContainer>
         <ContentContainer>
             <OrderList />
+            <h5>Inventory:</h5>
+            <InventoryList />
         </ContentContainer>
     </AppContainer>
 );

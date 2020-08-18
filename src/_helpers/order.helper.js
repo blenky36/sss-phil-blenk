@@ -2,7 +2,6 @@
 
 export const orderCalculator = (numberOfSweets, sweetPackSizes) => {
     let order = {};
-    let currentNumberOfSweetPacks = 0;
 
     if(!numberOfSweets || numberOfSweets === 0) {
         return order;
@@ -14,52 +13,72 @@ export const orderCalculator = (numberOfSweets, sweetPackSizes) => {
     } else if(sweetPackSizes.includes(numberOfSweets)) {
         order[numberOfSweets] = 1;
         return order;
+    } 
 
-    } else if(isAMultipleOfAnItem(numberOfSweets, sweetPackSizes)) {
-        const multiples = getItemsThatAreMultiples(numberOfSweets, sweetPackSizes);
-    
-        if(multiples.length === 1) {
-            let multiplier = numberOfSweets / multiples[0];
-            order[multiples[0]] = multiplier;
-            currentNumberOfSweetPacks = multiplier;
-            
-        } else {
-            let multiplier = numberOfSweets / smallestMultiple;
-            const smallestMultiple = findSmallestMultiple(numberOfSweets, multiples);
-            order[smallestMultiple] = multiplier;
-            currentNumberOfSweetPacks = multiplier;
+    const smallestNumSweetPacks = findSmallestNumSweetPacks(sweetPackSizes, numberOfSweets);
+    return { smallestNumSweetPacks };
 
-        }
-    } else if(true) {
-        // multiple items multiply and add to give total with no remainder
-
-    } else if(true) {
-        // multiple items multiply and add to give total with remainer :(
-    } else {
-        return {};
-    }
 }
 
 export const isSmallerThanAllItems = (value, items) => items.filter(item => value > item).length < 1;
 
 export const getSmallestItem = (items) => Math.min(...items);
 
-export const isMultipleOf = (value, item) => item % value === 0;
+const findLowerNumberOfSweetsWithSolution = (solutions, noCoins, numberOfSweets) => {
+    let newNumberOfSweets = numberOfSweets - 1;
 
-export const getItemsThatAreMultiples = (value, items) => items.filter(item => isMultipleOf(item, value));
+    if(solutions[noCoins][newNumberOfSweets] === Infinity) {
+        return findLowerNumberOfSweetsWithSolution(solutions, noCoins, newNumberOfSweets);
+    } else {
+        return newNumberOfSweets;
+    }
+}
 
-export const isAMultipleOfAnItem = (value, items) => getItemsThatAreMultiples(value, items).length > 0;
+const findSmallestNumSweetPacks = (sweetPackSizes, numberOfSweets, numExtraSweetBags) => {
 
-export const findSmallestMultiple = (value, multiples) => {
-    let currentSmallestMultiplier = value / multiples[0];
-    let currentSmallestMultiple = multiples[0];
-    
-    for (let i = 1; i < multiples.length; i++) {
-        let currentMultiplier = value / multiples[i];
-        if(currentMultiplier < currentSmallestMultiplier && currentMultiplier >= 1 && Number.isInteger(currentMultiplier)) {
-            currentSmallestMultiplier = currentMultiplier;
-            currentSmallestMultiple = multiples[i];
+    if(numberOfSweets === 0) {
+        return 0;
+    } else if (isSmallerThanAllItems(numberOfSweets, sweetPackSizes)) {
+        return numExtraSweetBags ? numExtraSweetBags + 1 : 1;
+    }
+
+    // Prepopulate the solutions box with zeros for zero row and infinity for everything else
+    let solutions = [];
+    for (let row = 0; row <= sweetPackSizes.length; row++) {
+        solutions[row] = [];
+        for (let col = 0; col <= numberOfSweets; col++) {
+            if(col === 0) {
+                solutions[row][col] = 0;
+            } else {
+                solutions[row][col] = Infinity;
+            }
         }
     }
-    return currentSmallestMultiple;
-} 
+
+    // Work out values for each cell
+    for (let row = 1; row <= sweetPackSizes.length; row++) {
+        for (let col = 0; col <= numberOfSweets; col++) {
+            if(col - sweetPackSizes[row-1] >= 0) {
+                solutions[row][col] = Math.min(solutions[row - 1][col], 1 + solutions[row][col - sweetPackSizes[row-1]])
+            } else {
+                solutions[row][col] = solutions[row - 1][col];
+            }
+        }
+    }
+    
+    // Take the last cell as it uses all the sweetPackSizes and is the value we want
+    if(solutions[sweetPackSizes.length][numberOfSweets] === Infinity) {
+        // If the last value doesn't divide - go back down the tree until you find one that does and then work out remainder and sweetPackSizes from there
+        const lowerNumberOfSweetsWithSolution = findLowerNumberOfSweetsWithSolution(solutions, sweetPackSizes.length, numberOfSweets);
+        const newNumberOfSweets = numberOfSweets - lowerNumberOfSweetsWithSolution;
+        return findSmallestNumSweetPacks(sweetPackSizes, newNumberOfSweets, solutions[sweetPackSizes.length][lowerNumberOfSweetsWithSolution]);
+
+    } else if(numExtraSweetBags) {
+        return solutions[sweetPackSizes.length][numberOfSweets] + numExtraSweetBags;
+    } else {
+        return solutions[sweetPackSizes.length][numberOfSweets];
+    }
+
+}
+
+
