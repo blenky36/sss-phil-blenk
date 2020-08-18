@@ -15,6 +15,7 @@ const InventoryItem = ({ text, index, onDeleteSweetPackClicked }) => {
     return (
         <InlineContainer>
             <InventoryText>{text}</InventoryText>
+            &nbsp;
             <StyledButton color="#ff4444" hoverColor="#CC0000" onClick={(e) => onDeleteSweetPackClicked(text)}>Delete</StyledButton>
         </InlineContainer>
     )
