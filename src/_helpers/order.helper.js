@@ -35,8 +35,17 @@ export const isSmallerThanAllItems = (value, items) => items.filter(item => valu
 
 export const getSmallestItem = (items) => Math.min(...items);
 
-const orderOptimiser = (order, sweetPackSizes) => {
+export const itemIsMultipleOfOtherItemInArray = (item, multiplier, array) => array.includes(item * multiplier); 
 
+export const orderOptimiser = (order, sweetPackSizes) => {
+    for (let i = 0; i < sweetPackSizes.length; i++) {
+        let sweetPackQuantity = order[sweetPackSizes[i]];
+        if(sweetPackQuantity && itemIsMultipleOfOtherItemInArray(sweetPackSizes[i], sweetPackQuantity, sweetPackSizes)) {
+            delete order[sweetPackSizes[i]];
+            order[sweetPackSizes[sweetPackSizes.indexOf(sweetPackSizes[i] * sweetPackQuantity)]] = 1;
+        }
+    }
+    return order;
 }
 
 
