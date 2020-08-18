@@ -75,4 +75,25 @@ describe('The inventory reducer', () => {
     
         expect(actual).toEqual(expected);
     });
+
+    it('Sets the showError correctly when passed SET_SHOW_INVENTORY_ERROR', () => {
+        const fakeState = { showError: true };
+        const fakeAction = getFakeAction('SET_SHOW_INVENTORY_ERROR', false);
+
+        const expected = { showError: false }
+        const actual = inventoryReducer(fakeState, fakeAction);
+    
+        expect(actual).toEqual(expected);
+    });
+
+    it('Sets the errorMessage correctly when passed SET_INVENTORY_ERROR_MESSAGE', () => {
+        const fakeState = { errorMessage: '' };
+        const fakeErrorMessage = 'Error message';
+        const fakeAction = getFakeAction('SET_INVENTORY_ERROR_MESSAGE', fakeErrorMessage);
+
+        const expected = { errorMessage: fakeErrorMessage }
+        const actual = inventoryReducer(fakeState, fakeAction);
+    
+        expect(actual).toEqual(expected);
+    });
 });

@@ -1,5 +1,5 @@
-import { ADD_SWEET_PACK_SIZE, UPDATE_SWEET_PACK_SIZE, REMOVE_SWEET_PACK_SIZE } from '../_constants/actionTypes';
-import { addSweetPackSize, updateSweetPackSize, removeSweetPackSize } from './inventory.actions';
+import { ADD_SWEET_PACK_SIZE, UPDATE_SWEET_PACK_SIZE, REMOVE_SWEET_PACK_SIZE, SET_INVENTORY_ERROR_MESSAGE, SET_SHOW_INVENTORY_ERROR } from '../_constants/actionTypes';
+import { addSweetPackSize, updateSweetPackSize, removeSweetPackSize, setInventoryErrorMessage, setShowInventoryError } from './inventory.actions';
 
 describe('The inventory actions', () => {
     describe('The addSweetPackSize action', () => {
@@ -41,6 +41,32 @@ describe('The inventory actions', () => {
             }
 
             const actual = removeSweetPackSize(fakeSweetPackSize);
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('The setInventoryErrorMessage action', () => {
+        it('Returns an object of type SET_INVENTORY_ERROR_MESSAGE with the error message as payload', () => {
+            const fakeErrorMessage = 'Error message'; 
+            const expected = {
+                type: SET_INVENTORY_ERROR_MESSAGE,
+                payload: fakeErrorMessage
+            }
+
+            const actual = setInventoryErrorMessage(fakeErrorMessage);
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('The setShowInventoryError action', () => {
+        it('Returns an object of type SET_SHOW_INVENTORY_ERROR with the error message as payload', () => {
+            const fakeShowError = true; 
+            const expected = {
+                type: SET_SHOW_INVENTORY_ERROR,
+                payload: fakeShowError
+            }
+
+            const actual = setShowInventoryError(fakeShowError);
             expect(actual).toEqual(expected);
         });
     });

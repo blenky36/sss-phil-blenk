@@ -6,6 +6,11 @@ export const inventoryReducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
         case ADD_SWEET_PACK_SIZE:
+            if(state.sweetPackSizes.includes(payload)) {
+                return {
+                    ...state
+                }
+            }
             return {
                 ...state,
                 sweetPackSizes: [...state.sweetPackSizes, payload].sort((a, b) => a - b)
@@ -16,6 +21,11 @@ export const inventoryReducer = (state = initialState, action) => {
                 sweetPackSizes: state.sweetPackSizes.filter((item) => item !== payload)
             }
         case UPDATE_SWEET_PACK_SIZE:
+            if(state.sweetPackSizes.includes(payload.sweetPackSize)) {
+                return {
+                    ...state
+                }
+            }
             return {
                 ...state,
                 sweetPackSizes: [...state.sweetPackSizes.map((sweetPackSize, index) => {
