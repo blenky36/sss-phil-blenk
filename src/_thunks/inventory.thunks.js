@@ -3,7 +3,9 @@ import { setInventoryErrorMessage, setShowInventoryError, addSweetPackSize } fro
 
 export const addInventoryItem = (item) => (dispatch, getState) => {
     const sweetPacks = getSweetPackSizes(getState());
-    if(sweetPacks.includes(item) || !item || item === 0) {
+    if(!item || item === 0) {
+        updateError(dispatch, 'Sweet pack size must be at least 1!', true);
+    } else if(sweetPacks.includes(item)) {
         updateError(dispatch, 'Sweet pack size already exists!', true);
     } else {
         updateError(dispatch, '', false);
