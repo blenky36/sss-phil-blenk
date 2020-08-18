@@ -2,17 +2,16 @@
 
 export const orderCalculator = (numberOfSweets, sweetPackSizes, existingOrder) => {
     let order = existingOrder ? existingOrder : {};
-    console.log({ numberOfSweets, existingOrder, order });
 
     if (!numberOfSweets || numberOfSweets === 0) {
         return order;
 
     } else if (isSmallerThanAllItems(numberOfSweets, sweetPackSizes)) {
-        existingOrder ? order[getSmallestItem(sweetPackSizes)] += 1 : order[getSmallestItem(sweetPackSizes)] = 1;
+        order[getSmallestItem(sweetPackSizes)] ? order[getSmallestItem(sweetPackSizes)] += 1 : order[getSmallestItem(sweetPackSizes)] = 1;
         return order;
 
     } else if (sweetPackSizes.includes(numberOfSweets)) {
-        existingOrder ? order[numberOfSweets] += 1 : order[numberOfSweets] = 1;
+        order[numberOfSweets] ? order[numberOfSweets] += 1 : order[numberOfSweets] = 1;
         return order;
     }
 
@@ -28,7 +27,7 @@ export const orderCalculator = (numberOfSweets, sweetPackSizes, existingOrder) =
             }
         }
     }
-    console.log('remainder: ' + newNumberOfSweets);
+
     return orderCalculator(newNumberOfSweets, sweetPackSizes, order);
 }
 
@@ -36,6 +35,9 @@ export const isSmallerThanAllItems = (value, items) => items.filter(item => valu
 
 export const getSmallestItem = (items) => Math.min(...items);
 
+const orderOptimiser = (order, sweetPackSizes) => {
+
+}
 
 
 
