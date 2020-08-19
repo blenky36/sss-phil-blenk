@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+   simons-sweet-shop-pb:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+   # volumes:
+   #   - .:/app

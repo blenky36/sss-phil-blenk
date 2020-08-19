@@ -1,12 +1,14 @@
-FROM node:13-alpine AS builder
+FROM node:12.2.0-alpine as build
 WORKDIR /app
-COPY . .
-RUN npm install react-scripts -g --silent
-RUN npm install
+ENV PATH /app/node_modules/.bin:$PATH
+COPY . /app
+RUN npm install --silent
 RUN npm run build
 
-FROM node:13-alpine
-RUN npm install -g serve
-WORKDIR /app
-COPY --from=builder /app/build .
-CMD ["serve", "-p", "3000", "-s", "."]
+# production environment
+FROM nginx:1.16.0-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
