@@ -20,7 +20,3 @@ Sweet pack sizes can be added or removed but not updated as it's not a high prio
 
 In the src/_helpers/archive directory there are two files with firstAttempt and secondAttempt labels. These show the different approaches taken before getting to the current solution.
 
-### Docker
-docker build -t sss-phil-blenk .
-
-docker run -it -p 3000:3000 sss-phil-blenk
