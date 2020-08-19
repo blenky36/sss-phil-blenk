@@ -19,7 +19,7 @@ const TableData = styled.td`
     padding: 15px;
 `;
 
-export const isEmpty = (obj) => {
+const isEmpty = (obj) => {
     for (var prop in obj) {
         if (obj.hasOwnProperty(prop))
             return false;
@@ -27,7 +27,7 @@ export const isEmpty = (obj) => {
     return true;
 }
 
-export const getOrderList = (orderOutputSweetPacks) => {
+const getOrderList = (orderOutputSweetPacks) => {
     const sweetPackList = [];
 
     if (!orderOutputSweetPacks || isEmpty(orderOutputSweetPacks)) {

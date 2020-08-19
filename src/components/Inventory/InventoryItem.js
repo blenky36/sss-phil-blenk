@@ -8,6 +8,8 @@ const InventoryText = styled.span`
     font-size: large;
     flex-grow: 4;
     font-weight: bold;
+    min-width: 100px;
+    margin-top: 5px;
 `;
 
 
