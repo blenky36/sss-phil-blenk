@@ -15,6 +15,8 @@ The solution is then calculated by top down subtraction of the sweet pack sizes 
 
 Once an order has been calculated then it is optimised to make sure that the third rule is being complied with. Due to how the top down subtraction method works, there will only be a situation where there are two packs that could potentially be exchanged for one bigger. 
 
+Logic performing functions have been unit tested but components have not.
+
 In the src/_helpers/archive directory there are two files with firstAttempt and secondAttempt labels. These show the different approaches taken before getting to the current solution.
 
 ### Docker
