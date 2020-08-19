@@ -9,7 +9,7 @@ const NewInventoryItem = ({ onAddInventoryItemClicked, errorMessage, showError }
     return (
         <>
             <InlineContainer>
-                <StyledInput color="#33b5e5" onChange={(e) => setNewInventoryItem(e.target.value)} type="number" step="1" min="0" value={newInventoryItem} />
+                <StyledInput color="#33b5e5" onChange={(e) => setNewInventoryItem(parseInt(e.target.value))} type="number" step="1" min="0" value={newInventoryItem} />
                 <StyledButton color="#33b5e5" hoverColor="#0099CC" onClick={(event) => onAddInventoryItemClicked(newInventoryItem)} >Add</StyledButton>
             </InlineContainer>
             {showError ? <ErrorMessageText>{errorMessage}</ErrorMessageText> : <HiddenErrorMessageText>Text</HiddenErrorMessageText>}
