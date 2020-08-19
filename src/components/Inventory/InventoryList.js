@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { getSweetPackSizes } from '../../_selectors/inventory.selectors';
 import InventoryItem from './InventoryItem';
 import NewInventoryItem from './NewInventoryItem';
-import { StyledButton, StyledInput, InlineContainer } from '../../styling/commonStyles';
 
 const InventoryList = ({ sweetPackSizes }) => {
     return (

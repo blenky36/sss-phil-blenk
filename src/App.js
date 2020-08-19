@@ -35,7 +35,7 @@ const SourceCode = styled.a`
 const App = () => (
     <AppContainer>
         <HeaderContainer>
-            <h2><span role="img" aria-aria-label="lolly">🍭</span>Simon's Sweet Shop<span role="img" aria-aria-label="lolly">🍬</span></h2>
+            <h2><span role="img" aria-label="lolly">🍭</span>Simon's Sweet Shop<span role="img" aria-label="lolly">🍬</span></h2>
             <span>Please order how many sweets you would like:</span>
             <br />
             <NewOrder />

@@ -8,7 +8,7 @@ const Table = styled.table`
     font-size: 75%;
 `;
 
-const TableHead = styled.thead`
+const TableHeader = styled.thead`
     border-radius: 4px;
     border: 1px solid #00C851;    
     background-color: #00C851;
@@ -16,6 +16,9 @@ const TableHead = styled.thead`
 `;
 
 const TableData = styled.td`
+    padding: 15px;
+`;
+const TableHead = styled.th`
     padding: 15px;
 `;
 
@@ -51,10 +54,10 @@ const getOrderList = (orderOutputSweetPacks) => {
 
 const OrderList = ({ orderOutputSweetPacks }) => (
     <Table>
-        <TableHead>
-            <TableData>Sweet Pack Size</TableData>
-            <TableData>Quantity</TableData>
-        </TableHead>
+        <TableHeader>
+            <TableHead>Sweet Pack Size</TableHead>
+            <TableHead>Quantity</TableHead>
+        </TableHeader>
         <tbody>
             {getOrderList(orderOutputSweetPacks)}
         </tbody>
