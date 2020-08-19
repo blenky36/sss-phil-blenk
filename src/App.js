@@ -28,6 +28,10 @@ const ContentContainer = styled.div`
     color: white;
 `;
 
+const SourceCode = styled.a`
+    color: #ffbb33;
+`;
+
 const App = () => (
     <AppContainer>
         <HeaderContainer>
@@ -40,6 +44,8 @@ const App = () => (
             <OrderList />
             <h5>Sweet packs:</h5>
             <InventoryList />
+            <span><SourceCode target="_blank" href="https://github.com/blenky36/sss-phil-blenk">Source Code</SourceCode></span>
+            <br/>
         </ContentContainer>
     </AppContainer>
 );
