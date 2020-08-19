@@ -13,7 +13,7 @@ export const addInventoryItem = (item) => (dispatch, getState) => {
     }
 }
 
-const updateError = (dispatch, errorMessage, showError) => {
+export const updateError = (dispatch, errorMessage, showError) => {
     dispatch(setInventoryErrorMessage(errorMessage));
     dispatch(setShowInventoryError(showError));
 }

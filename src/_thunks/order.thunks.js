@@ -18,7 +18,7 @@ export const calculateOrder = () => (dispatch, getState) => {
     }
 }
 
-const updateError = (dispatch, errorMessage, showError) => {
+export const updateError = (dispatch, errorMessage, showError) => {
     dispatch(setOrderErrorMessage(errorMessage));
     dispatch(setShowOrderError(showError));
 }
