@@ -8,6 +8,10 @@ Build a solution that will enable SSS to send out packs of sweets with as little
 3. Within the constraints of Rules1 & 2 above, send out as few packs as possible to fulfil each order.
 The solution should also be ​flexible​ enough to add or remove pack sizes as well as change current pack sizes with minimal adjustments to the program.
 
+
+### Notes
+In the src/_helpers/archive directory there are two files with firstAttempt and secondAttempt labels. These show the different approaches taken before getting to the current solution.
+
 ### Docker
 docker build -t sss-phil-blenk .
 
