@@ -38,7 +38,7 @@ const App = () => (
         </HeaderContainer>
         <ContentContainer>
             <OrderList />
-            <h5>Inventory:</h5>
+            <h5>Sweet packs:</h5>
             <InventoryList />
         </ContentContainer>
     </AppContainer>

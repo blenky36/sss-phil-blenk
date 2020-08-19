@@ -4,7 +4,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { orderReducer } from './_reducers/order.reducer';
 import { inventoryReducer } from './_reducers/inventory.reducer';
 
-
 const reducers = {
     orderReducer,
     inventoryReducer

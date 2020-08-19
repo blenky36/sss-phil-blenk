@@ -1,8 +1,6 @@
 ### Simon's Sweet Shop Solution
 
-MVP
-• Order x sweets with minimal wasteage, whole packs only and fewest packs sent. 
+## Docker
+docker build -t sss-phil-blenk .
 
-
-SECOND PHASE
-• Add or remove pack sizes
+docker run -it -p 3000:3000 sss-phil-blenk

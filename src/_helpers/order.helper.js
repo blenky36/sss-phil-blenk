@@ -46,6 +46,7 @@ export const orderOptimiser = (order, sweetPackSizes) => {
         let sweetPackQuantity = order[sweetPackSizes[i]];
         if(sweetPackQuantity && itemIsMultipleOfOtherItemInArray(sweetPackSizes[i], sweetPackQuantity, sweetPackSizes)) {
             delete order[sweetPackSizes[i]];
+            // due to the way the orderCalculator works from the top down, there won't be a scenario where there are three of an item that has a multiple bigger than it
             order[sweetPackSizes[sweetPackSizes.indexOf(sweetPackSizes[i] * sweetPackQuantity)]] = 1;
         }
     }
