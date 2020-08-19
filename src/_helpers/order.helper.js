@@ -16,7 +16,7 @@ export const orderCalculator = (numberOfSweets, sweetPackSizes, existingOrder) =
     }
 
     let newNumberOfSweets = numberOfSweets;
-
+    
     for (let i = sweetPackSizes.length - 1; i >= 0; i--) {
         while (newNumberOfSweets - sweetPackSizes[i] >= 0) {
             newNumberOfSweets -= sweetPackSizes[i];
