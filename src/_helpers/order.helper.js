@@ -44,14 +44,30 @@ export const itemIsMultipleOfOtherItemInArray = (item, multiplier, array) => arr
 export const orderOptimiser = (order, sweetPackSizes) => {
     for (let i = 0; i < sweetPackSizes.length; i++) {
         let sweetPackQuantity = order[sweetPackSizes[i]];
+         //                                                       250                  2              [250, 500, 750, 1000]    
         if(sweetPackQuantity && itemIsMultipleOfOtherItemInArray(sweetPackSizes[i], sweetPackQuantity, sweetPackSizes)) {
             delete order[sweetPackSizes[i]];
-            // due to the way the orderCalculator works from the top down, there won't be a scenario where there are three of an item that has a multiple bigger than it
-            order[sweetPackSizes[sweetPackSizes.indexOf(sweetPackSizes[i] * sweetPackQuantity)]] = 1;
+            let newSweetPackSize = sweetPackSizes[i] * sweetPackQuantity;
+            if(order[newSweetPackSize]) {
+                order[newSweetPackSize] += 1
+            } else {
+                order[newSweetPackSize] = 1
+            }
         }
     }
     return order;
 }
 
+// export const orderOptimiser2 = (order, sweetPackSizes) => {
+//     // { 5000: 1, 2000: 1, 500: 1, 250: 1 }
+//     for (let i = 0; i < sweetPackSizes.length; i++) {
+//         let sweetPackQuantity = order[sweetPackSizes[i]];
 
-
+//         if(sweetPackQuantity && itemIsMultipleOfOtherItemInArray(sweetPackSizes[i], sweetPackQuantity, sweetPackSizes)) {
+//             delete order[sweetPackSizes[i]];
+//             // due to the way the orderCalculator works from the top down, there won't be a scenario where there are three of an item that has a multiple bigger than it
+//             order[sweetPackSizes[sweetPackSizes.indexOf(sweetPackSizes[i] * sweetPackQuantity)]] = 1;
+//         }
+//     }
+//     return order;
+// }

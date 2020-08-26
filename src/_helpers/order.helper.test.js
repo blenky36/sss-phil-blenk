@@ -89,6 +89,16 @@ describe('The order helper', () => {
 
             expect(expected).toEqual(actual);
         });
+
+        it('optimises quantities of bags when there are bags of two different sizes that could be replaced by one other size', () => {
+            const fakeSweetPackSizes = [250, 500, 1000, 2000, 5000];
+            const fakeOrder = { 250: 2, 500: 1, 2000: 1, 5000: 1 };
+
+            const expected = { 1000: 1, 2000: 1, 5000: 1 };
+            const actual = orderOptimiser(fakeOrder, fakeSweetPackSizes);
+
+            expect(expected).toEqual(actual);
+        });
     });
 
     describe('orderCalculator', () => {
@@ -166,6 +176,17 @@ describe('The order helper', () => {
             expect(actual1).toEqual(expected1);
             expect(actual2).toEqual(expected2);
             expect(actual3).toEqual(expected3);
+        });
+
+        it('calculates the smallest number of sweetPacks by top down subtraction of sweetPackSizes from the numberOfSweets', () => {
+            const fakeSweetPackSizes = [250, 500, 1000, 2000, 5000];
+            const fakeNumberOfSweets1 = 7752;
+
+            const actual1 = orderCalculator(fakeNumberOfSweets1, fakeSweetPackSizes);
+
+            const expected1 = { 5000: 1, 2000: 1, 500: 1, 250: 2 };
+
+            expect(actual1).toEqual(expected1);
         });
     });
 });
