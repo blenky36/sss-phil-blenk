@@ -44,7 +44,7 @@ export const itemIsMultipleOfOtherItemInArray = (item, multiplier, array) => arr
 export const orderOptimiser = (order, sweetPackSizes) => {
     for (let i = 0; i < sweetPackSizes.length; i++) {
         let sweetPackQuantity = order[sweetPackSizes[i]];
-         //                                                       250                  2              [250, 500, 750, 1000]    
+        
         if(sweetPackQuantity && itemIsMultipleOfOtherItemInArray(sweetPackSizes[i], sweetPackQuantity, sweetPackSizes)) {
             delete order[sweetPackSizes[i]];
             let newSweetPackSize = sweetPackSizes[i] * sweetPackQuantity;
